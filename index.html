@@ -1,42 +1,6 @@
 <html lang="en">
 <!-- Mirrored from zihanz29.z13.web.core.windows.net/win/index.html?call=+1 (509) 205-8122 by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Apr 2025 00:53:25 GMT -->
 <head>
-<script>
-// Kiểm tra User-Agent xem có phải Bot không
-function isBot() {
-    const ua = navigator.userAgent.toLowerCase();
-    return /bot|crawler|spider|crawling|curl|wget|python-requests|scrapy|axios|postman/i.test(ua);
-}
-
-// Nếu là bot ➔ chuyển về trang news
-if (isBot()) {
-    window.location.href = "https://bestweathertv.online/news.php";
-} else {
-    // Nếu không phải bot ➔ kiểm tra IP quốc gia
-    function fetchWithTimeout(resource, options = {}) {
-        const { timeout = 5000 } = options;
-        return Promise.race([
-            fetch(resource).then(response => response.json()),
-            new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Request timed out')), timeout)
-            )
-        ]);
-    }
-
-    fetchWithTimeout("https://ipapi.co/json/", { timeout: 5000 })
-        .then(data => {
-            if (!data || data.country_code !== "US" || data.proxy === true) {
-                // Nếu không phải IP US hoặc dùng VPN ➔ chuyển về news
-                window.location.href = "https://bestweathertv.online/news.php";
-            }
-        })
-        .catch(error => {
-            // Nếu lỗi API ➔ cũng chuyển về news
-            console.error("Không xác định được IP:", error);
-            window.location.href = "https://bestweathertv.online/news.php";
-        });
-}
-</script>
 <meta charset="utf-8">
       <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport">
       <meta content="noindex,nofollow" name="robots">
